@@ -8,42 +8,25 @@ export default function HeroActions() {
   const [showVideo, setShowVideo] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
+  const btnBase = "gothamU uppercase tracking-widest md:tracking-[0.15em] transition-all duration-200 outline-none active:scale-95";
+
   return (
-    <div className="w-full flex justify-center items-start px-2 md:px-0">
-      {
-        /*
-        ULTRA COMPACTO MÓVIL:
-        - max-w-[280px]: Muy estrecho para no ocupar toda la pantalla.
-        - p-2.5: Relleno mínimo.
-        - gap-2: Espacio muy reducido entre elementos.
-      */
-      }
-      <div className="bg-white rounded-xl md:rounded-[2.2vw] p-2.5 md:p-[3vw] shadow-xl w-full max-w-70 sm:max-w-md md:max-w-none md:w-[75%] border border-gray-100 flex flex-col gap-2 md:gap-[2.2vh] transform-none">
-        {
-          /* BOTÓN PRINCIPAL: Inscripción
-            - py-2: Muy bajo.
-            - text-xs: Fuente pequeña pero legible.
-        */
-        }
+    <div className="w-full flex justify-center px-2 md:px-0">
+      <div className="bg-Blanco/80 backdrop-blur-sm rounded-xl md:rounded-[2.2vw] p-2.5 md:p-[3vw] w-full max-w-md md:max-w-none md:w-[75%] border md:border-[0.35vw] border-Dorado/60 flex flex-col gap-2 md:gap-[2.2vh] shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:border-Dorado hover:shadow-Dorado/10">
+
         <button
           type="button"
           onClick={() => setShowForm(true)}
-          className="w-full py-2 md:py-[2.8vh] rounded-lg md:rounded-[1.4vw] bg-[#dfb760] text-[#1f374f] gothamU text-xs md:text-[1.4vw] tracking-widest md:tracking-[0.2em] text-center hover:bg-[#e8c97a] transition-colors duration-200 shadow-sm font-black uppercase outline-none"
+          className={`${btnBase} w-full py-2 md:py-[2.8vh] rounded-lg md:rounded-[1.4vw] bg-Dorado text-Azul text-xs md:text-[1.4vw] font-black hover:brightness-110 shadow-md`}
         >
           INSCRIPCIÓN
         </button>
 
-        {
-          /* BOTONES SECUNDARIOS
-            - py-1.5: Altura mínima para botones.
-            - text-[9px]: Fuente ultra pequeña compensada con tracking.
-        */
-        }
-        <div className="flex flex-row gap-2 md:gap-[1.4vw]">
+        <div className="flex gap-2 md:gap-[1.4vw]">
           <button
             type="button"
             onClick={() => setShowRules(true)}
-            className="flex-1 py-1.5 md:py-[2vh] rounded-md md:rounded-[1vw] bg-[#1f374f] text-white gothamU text-[9px] sm:text-xs md:text-[0.95vw] tracking-widest md:tracking-[0.15em] hover:bg-[#2a4a6a] transition-colors duration-200 uppercase outline-none"
+            className={`${btnBase} flex-1 py-1.5 md:py-[2vh] rounded-md md:rounded-[1vw] bg-Azul text-Blanco text-[9px] md:text-[0.95vw] hover:bg-Azul/90`}
           >
             REGLAS
           </button>
@@ -51,31 +34,16 @@ export default function HeroActions() {
           <button
             type="button"
             onClick={() => setShowVideo(true)}
-            className="flex-1 py-1.5 md:py-[2vh] rounded-md md:rounded-[1vw] border md:border-[0.2vw] border-[#1f374f] text-[#1f374f] gothamU text-[9px] sm:text-xs md:text-[0.95vw] tracking-widest md:tracking-[0.15em] hover:bg-gray-50 transition-colors duration-200 uppercase outline-none"
+            className={`${btnBase} flex-1 py-1.5 md:py-[2vh] rounded-md md:rounded-[1vw] bg-Blanco/30 border md:border-[0.2vw] border-Azul text-Azul text-[9px] md:text-[0.95vw] hover:bg-Blanco/70 hover:text-Azul/80`}
           >
             TRAILER
           </button>
         </div>
       </div>
 
-      {showRules && (
-        <RulesModal
-          open={showRules}
-          onClose={() => setShowRules(false)}
-        />
-      )}
-      {showVideo && (
-        <VideoModal
-          isOpen={showVideo}
-          onClose={() => setShowVideo(false)}
-        />
-      )}
-      {showForm && (
-        <InscripcionForm
-          isOpen={showForm}
-          onClose={() => setShowForm(false)}
-        />
-      )}
+      {showRules && <RulesModal open={showRules} onClose={() => setShowRules(false)} />}
+      {showVideo && <VideoModal isOpen={showVideo} onClose={() => setShowVideo(false)} />}
+      {showForm && <InscripcionForm isOpen={showForm} onClose={() => setShowForm(false)} />}
     </div>
   );
 }

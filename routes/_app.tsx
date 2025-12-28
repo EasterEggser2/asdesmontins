@@ -5,14 +5,21 @@ import Navbar from "@/islands/Navbar.tsx";
 import Footer from "@/components/Footer.tsx";
 
 export default define.page(function App(props) {
-  // 1. Extraemos 'url' de las props
   const { Component, url } = props;
+
+  const pathName = url.pathname === "/"
+    ? "Inicio"
+    : url.pathname.split("/").filter(Boolean)[0];
+
+  const formattedPath = pathName.charAt(0).toUpperCase() + pathName.slice(1);
+  const fullTitle = `BTOQ | ${formattedPath}`;
 
   return (
     <html lang="es">
       <Head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{fullTitle}</title>
 
         <link
           f-permanent
@@ -20,14 +27,14 @@ export default define.page(function App(props) {
           type="image/x-icon"
           href="/favicon.ico?v=2025"
         />
-        <title f-permanent>BTOQ</title>
+        <link rel="preload"
+        href="/img/Hero.webp"
+        as="image" />
 
-        {/* ... el resto de tus preloads ... */}
         <link rel="stylesheet" href="/styles.css" />
       </Head>
 
-      <body className="flex flex-col min-h-screen bg-[#1f374f]" f-client-nav>
-        {/* 2. PASAR LA URL A LA NAVBAR */}
+      <body className="flex flex-col min-h-screen bg-Azul" f-client-nav>
         <Navbar url={url} />
 
         <main className="grow">

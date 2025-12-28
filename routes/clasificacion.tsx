@@ -1,30 +1,36 @@
+// routes/clasificacion.tsx
 import { define } from "../utils.ts";
+import { useTorneoStatus } from "../utils/config.ts";
+import Portal from "@/components/portal.tsx";
 
-export default define.page(function ClasificacionPage() {
-  // CONVERSIÓN ELÁSTICA (Cero Píxeles):
-  // Mantiene la misma escala que Showmatch y Streams para total simetría.
+export default define.page(function Clasificacion() {
+  const { isLive, isFinished } = useTorneoStatus();
+  const isBefore = !isLive && !isFinished;
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen pt-[8vw] pb-[4vw] px-[2vw]">
-      <div className="bg-[#1b3149] border-[0.15vw] border-(--color-dorado) rounded-[1.4vw] p-[2.8vw] shadow-2xl text-center max-w-[45vw] w-full">
-        <h1 className="text-[2.5vw] font-black gothamU text-(--color-dorado) uppercase tracking-tighter mb-[1vw]">
-          CLASIFICACIÓN
-        </h1>
+    <section className="flex flex-col items-center justify-center min-h-screen pt-[8vw] pb-[4vw] px-[2vw] bg-Azul relative overflow-hidden">
+      {isBefore && (
+        <Portal type="clasificacion" />
+      )}
+      {(isLive || isFinished) && (
+        <div className="w-full max-w-[85vw] animate-fade-in flex flex-col items-center">
+          <header className="text-center mb-[2vw]">
+            <h1 className="text-[3vw] font-black gothamU text-Dorado uppercase italic leading-none">
+              {isFinished ? "Resultados Finales" : "Leaderboard Oficial"}
+            </h1>
+            <div className="h-[0.2vw] w-[10vw] bg-Dorado/40 mx-auto mt-[1vw] shadow-[0_0_1.5vw_rgba(223,183,96,0.4)]" />
+          </header>
 
-        {/* Línea divisora elástica */}
-        <div className="h-[0.15vw] w-[6vw] bg-(--color-dorado) mx-auto mb-[1.5vw] opacity-50" />
+          <div className="w-full h-[40vw] bg-black/20 backdrop-blur-sm border-[0.15vw] border-Dorado/20 rounded-[1.4vw] flex items-center justify-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-linear-to-b from-transparent via-Dorado/5 to-transparent w-full h-[20%] animate-scan" />
 
-        <p className="raleway text-[1.2vw] text-white/80 font-light tracking-wide italic">
-          "Tabla de posiciones y estadísticas"
-        </p>
-
-        {/* Barra de Próximamente unificada */}
-        <div className="mt-[2vw] py-[1vw] px-[1.5vw] border-[0.1vw] border-white/10 rounded-[0.8vw] bg-[#1f374f]/50">
-          <p className="gothamM text-[0.8vw] text-white/40 uppercase tracking-[0.3em]">
-            Próximamente 15/1/2026
-          </p>
+            <p className="raleway text-white/40 italic text-[1.5vw] tracking-widest uppercase animate-pulse">
+              {isFinished ? "Archivo de Competencia" : "Sincronizando base de datos..."}
+            </p>
+          </div>
         </div>
-      </div>
+      )}
+
     </section>
   );
 });

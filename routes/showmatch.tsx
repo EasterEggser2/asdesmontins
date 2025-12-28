@@ -1,34 +1,39 @@
+// routes/showmatch.tsx
 import { define } from "../utils.ts";
+import { useTorneoStatus } from "../utils/config.ts";
+import Portal from "@/components/portal.tsx";
 
-export default define.page(function ShowmatchPage() {
-  // CONVERSIÓN A MEDIDAS ELÁSTICAS (VW/VH):
-  // pt-32 -> pt-[8vw]
-  // text-4xl (36px) -> text-[2.5vw]
-  // p-10 (40px) -> p-[2.8vw]
-  // rounded-20px -> rounded-[1.4vw]
-  // h-0.5 (2px) -> h-[0.15vw]
+export default define.page(function Showmatch() {
+  const { isLive, isFinished } = useTorneoStatus();
+  const isBefore = !isLive && !isFinished;
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen pt-[8vw] pb-[4vw] px-[2vw]">
-      <div className="bg-[#1b3149] border-[0.15vw] border-(--color-dorado) rounded-[1.4vw] p-[2.8vw] shadow-2xl text-center max-w-[45vw] w-full">
-        <h1 className="text-[2.5vw] font-black gothamU text-(--color-dorado) uppercase tracking-tighter mb-[1vw]">
-          SHOWMATCH
-        </h1>
+    <section className="flex flex-col items-center justify-center min-h-screen pt-[8vw] pb-[4vw] px-[2vw] bg-Azul relative overflow-hidden">
+      {isBefore && (
+        <Portal type="showmatch" />
+      )}
+      {(isLive || isFinished) && (
+        <div className="w-full max-w-[80vw] animate-fade-in">
+          <header className="text-center mb-[3vw]">
+            <h1 className="text-[3vw] font-black gothamU text-Dorado uppercase italic leading-none">
+              {isFinished ? "Revive los Showmatches" : "Cartelera de Exhibición"}
+            </h1>
+            <p className="raleway text-Blanco/60 text-[1.1vw] mt-[1vw]">
+              {isFinished ? "Los duelos más memorables del torneo" : "Los mejores duelos de la comunidad"}
+            </p>
+          </header>
 
-        {/* Línea divisora elástica */}
-        <div className="h-[0.15vw] w-[6vw] bg-(--color-dorado) mx-auto mb-[1.5vw] opacity-50" />
-
-        <p className="raleway text-[1.2vw] text-white/80 font-light tracking-wide italic">
-          "Contenido especial y encuentros de exhibición"
-        </p>
-
-        {/* Barra de Próximamente unificada */}
-        <div className="mt-[2vw] py-[1vw] px-[1.5vw] border-[0.1vw] border-white/10 rounded-[0.8vw] bg-[#1f374f]/50">
-          <p className="gothamM text-[0.8vw] text-white/40 uppercase tracking-[0.3em]">
-            Próximamente 15/1/2026
-          </p>
+          <div className="grid grid-cols-2 gap-[2vw]">
+            <div className="aspect-video bg-Blanco/5 border border-Blanco/10 rounded-[1vw] shadow-xl hover:border-Dorado/30 transition-all duration-500 flex items-center justify-center italic text-Blanco/20">
+              Próximamente
+            </div>
+            <div className="aspect-video bg-Blanco/5 border border-Blanco/10 rounded-[1vw] shadow-xl hover:border-Dorado/30 transition-all duration-500 flex items-center justify-center italic text-Blanco/20">
+              Próximamente
+            </div>
+          </div>
         </div>
-      </div>
+      )}
+
     </section>
   );
 });

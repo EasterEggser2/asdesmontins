@@ -1,34 +1,47 @@
+// routes/streams.tsx
 import { define } from "../utils.ts";
+import { useTorneoStatus } from "../utils/config.ts";
+import Portal from "../components/portal.tsx";
 
-export default define.page(function StreamsPage() {
-  // CONVERSIÓN ELÁSTICA (Cero Píxeles):
-  // pt-32 -> pt-[8vw]
-  // text-4xl -> text-[2.5vw]
-  // p-10 -> p-[2.8vw]
-  // rounded-20px -> rounded-[1.4vw]
-  // h-0.5 -> h-[0.15vw]
+export default define.page(function Streams() {
+  const { isLive, isFinished } = useTorneoStatus();
+  const isBefore = !isLive && !isFinished;
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen pt-[8vw] pb-[4vw] px-[2vw]">
-      <div className="bg-[#1b3149] border-[0.15vw] border-(--color-dorado) rounded-[1.4vw] p-[2.8vw] shadow-2xl text-center max-w-[45vw] w-full">
-        <h1 className="text-[2.5vw] font-black gothamU text-(--color-dorado) uppercase tracking-tighter mb-[1vw]">
-          STREAMS
-        </h1>
+    <section className="flex flex-col items-center justify-center min-h-screen pt-[8vw] pb-[4vw] px-[2vw] bg-Azul relative overflow-hidden">
+      {isBefore && (
+        <Portal type="streams" />
+      )}
+      {(isLive || isFinished) && (
+        <div className="w-full max-w-[75vw] flex flex-col items-center animate-fade-in">
+          <div className="w-full aspect-video bg-Negro border-[0.2vw] border-Dorado/50 rounded-[1vw] shadow-[0_0_5vw_rgba(0,0,0,0.5)] overflow-hidden relative group">
 
-        {/* Línea divisora elástica */}
-        <div className="h-[0.15vw] w-[6vw] bg-(--color-dorado) mx-auto mb-[1.5vw] opacity-50" />
+            <div className="absolute inset-0 flex items-center justify-center bg-Azul/40 backdrop-blur-sm group-hover:opacity-0 transition-opacity duration-700">
+              <h2 className="text-Dorado gothamU italic text-[2vw] animate-pulse">
+                {isFinished ? "Transmisión Finalizada" : "Conectando con la señal oficial..."}
+              </h2>
+            </div>
 
-        <p className="raleway text-[1.2vw] text-white/80 font-light tracking-wide italic">
-          "Señal en vivo y transmisiones oficiales"
-        </p>
+            <div className="w-full h-full flex items-center justify-center text-Dorado/10 gothamU italic text-[3vw]">
+              {isFinished ? "VOD REPLAY" : "LIVE STREAM"}
+            </div>
+          </div>
 
-        {/* Barra de Próximamente unificada */}
-        <div className="mt-[2vw] py-[1vw] px-[1.5vw] border-[0.1vw] border-white/10 rounded-[0.8vw] bg-[#1f374f]/50">
-          <p className="gothamM text-[0.8vw] text-white/40 uppercase tracking-[0.3em]">
-            Próximamente 15/1/2026
-          </p>
+          <div className="mt-[2vw] w-full flex justify-between items-center bg-black/40 p-[1.5vw] rounded-[1vw] border border-white/10 backdrop-blur-md">
+            <h2 className="text-Blanco gothamU text-[1.4vw] uppercase tracking-tighter">
+              {isFinished ? "Resumen de la Gran Final" : "Transmisión Oficial BTOQ"}
+            </h2>
+
+            <div className="flex items-center gap-[0.8vw]">
+              <span className={`w-[0.7vw] h-[0.7vw] rounded-full ${isLive ? 'bg-red-600 animate-ping' : 'bg-white/20'}`} />
+              <span className="text-Blanco/90 raleway text-[1vw] font-bold tracking-widest uppercase">
+                {isLive ? "En Vivo" : "Desconectado"}
+              </span>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
+
     </section>
   );
 });
