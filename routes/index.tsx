@@ -7,20 +7,15 @@ import { Head } from "fresh/runtime";
 export default function Inicio() {
   return (
     <>
-      <Head>
-        {/* El preload está perfecto, mantenlo así */}
-        <link rel="preload" href="/img/Hero.webp" as="image" fetchpriority="high" />
-      </Head>
-      
       <main className="bg-Azul text-Blanco overflow-x-hidden flex flex-col">
         <div className="relative w-full h-screen bg-Azul shrink-0">
           <img
             src="/img/Hero.webp"
-            fetchpriority="high" 
+            fetchpriority="high"
             loading="eager"
-            decoding="sync"
+            decoding="sync" 
             className="absolute inset-0 w-full h-full object-cover object-[50%_10%]"
-            alt="Hero Btoq Challengers"
+            alt="Hero Btoq"
           />
           <div className="relative flex flex-col items-center justify-center h-full">
           </div>
