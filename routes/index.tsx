@@ -8,6 +8,7 @@ export default function Inicio() {
   return (
     <>
       <Head>
+        <link rel="preload" href="/img/Hero.webp" as="image" fetchpriority="high" />
         <link rel="preload" href="/img/FormHeader.webp" as="image" />
         <link rel="preload" href="/img/FormFooter.webp" as="image" />
       </Head>
