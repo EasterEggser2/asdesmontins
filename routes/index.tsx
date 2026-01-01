@@ -2,7 +2,6 @@
 import Timer from "@/islands/Timer.tsx";
 import HeroActions from "@/islands/HeroActions.tsx";
 import PrizesSection from "../components/prize/PrizeSection.tsx";
-import { Head } from "fresh/runtime";
 
 export default function Inicio() {
   return (
@@ -13,7 +12,7 @@ export default function Inicio() {
             src="/img/Hero.webp"
             fetchpriority="high"
             loading="eager"
-            decoding="sync" 
+            decoding="sync"
             className="absolute inset-0 w-full h-full object-cover object-[50%_10%]"
             alt="Hero Btoq"
           />
