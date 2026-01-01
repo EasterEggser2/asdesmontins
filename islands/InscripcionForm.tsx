@@ -120,7 +120,7 @@ const getInputCls = (n: string) => `
   return (
     <Modal maxWidth="max-w-[95vw] md:max-w-[40vw]" isOpen={isOpen} onClose={onClose}>
       <form className="w-full bg-Azul rounded-xl overflow-hidden shadow-2xl relative" onSubmit={handleSubmit}>
-        <div className="w-full h-[15vh] md:h-[20vh] bg-cover bg-center border-b border-Dorado/30" style={{ backgroundImage: 'url("/img/FormHeader.webp")' }} />
+        <div className="w-full h-[15vh] md:h-[20vh] bg-Azul bg-cover bg-center border-b border-Dorado/30" style={{ backgroundImage: 'url("/img/FormHeader.webp")' }} role="img" aria-label="Encabezado" />
 
         <div className="flex flex-col gap-[2vh] p-[5vw] md:p-[2.5vw]">
           <h1 className="gothamU text-[5vw] md:text-[1.5vw] text-center text-Dorado font-black uppercase tracking-[0.2em] -mt-[3vw] md:-mt-[2vw] relative z-10">
@@ -163,7 +163,7 @@ const getInputCls = (n: string) => `
             onInput={handleInput} className={getInputCls("twitch")} />
           </div>
 
-          <div className="h-[8vh] md:h-[12vh] w-full bg-cover bg-center opacity-80 rounded-[1vw] border border-Blanco/5" style={{ backgroundImage: 'url("/img/FormFooter.webp")' }} />
+          <div className="h-[8vh] md:h-[12vh] w-full bg-Azul/50 bg-cover bg-center opacity-80 rounded-[1vw] border border-Blanco/5" style={{ backgroundImage: 'url("/img/FormFooter.webp")' }} role="img" aria-label="Pie de formulario" />
 
           <div className="grid grid-cols-2 gap-[1.5vw] mt-[1vh]">
             <button type="submit"
