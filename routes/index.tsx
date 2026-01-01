@@ -9,8 +9,7 @@ export default function Inicio() {
     <>
       <Head>
         <link rel="preload" href="/img/Hero.webp" as="image" fetchpriority="high" />
-        <link rel="preload" href="/img/FormHeader.webp" as="image" />
-        <link rel="preload" href="/img/FormFooter.webp" as="image" />
+
       </Head>
       <main className="bg-Azul text-Blanco overflow-x-hidden flex flex-col">
         <div className="relative w-full h-screen bg-Azul shrink-0">
