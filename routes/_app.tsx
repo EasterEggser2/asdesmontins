@@ -27,9 +27,6 @@ export default define.page(function App(props) {
           type="image/x-icon"
           href="/favicon.ico?v=2025"
         />
-        <link rel="preload"
-        href="/img/Hero.webp"
-        as="image" />
 
         <link rel="stylesheet" href="/styles.css" />
       </Head>
