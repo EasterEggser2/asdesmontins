@@ -8,9 +8,10 @@ export default function Inicio() {
   return (
     <>
       <Head>
-        <title>Btoq Challengers</title>
-        <link rel="preload" href="/fonts/Gotham-Ultra.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/Gotham-Medium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+      <link rel="preload" href="/fonts/Raleway.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+      <link rel="preload" href="/fonts/Raleway-Light.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+      <link rel="preload" href="/fonts/Gotham-Ultra.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+      <link rel="preload" href="/fonts/Gotham-Medium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </Head>
       <main className="bg-Azul text-Blanco overflow-x-hidden flex flex-col">
         <div className="relative w-full h-screen bg-Azul shrink-0">
